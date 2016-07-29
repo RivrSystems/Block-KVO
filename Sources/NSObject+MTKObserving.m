@@ -146,7 +146,7 @@
         //! The autoreleasepool ensures the only reference to the MTKObserver is the associated reference.
         observer = [object mtk_observerForKeyPath:keyPath owner:self];
     }
-    __weak typeof(self) weakSelf = self;
+    typeof(self) weakSelf = self;
     [observer addSettingObservationBlock:^(id object, id old, id new) {
         observationBlock(weakSelf, object, old, new);
     }];
@@ -301,7 +301,7 @@
 - (void)observeNotification:(NSString *)name fromObject:(id)object withBlock:(MTKBlockNotify)block {
     // Invoke manually for the first time.
     block(self, nil);
-    __weak typeof(self) weakSelf = self;
+    typeof(self) weakSelf = self;
     id internalObserver = [[NSNotificationCenter defaultCenter] addObserverForName:name
                                                                             object:object
                                                                              queue:[NSOperationQueue currentQueue]
